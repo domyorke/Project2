@@ -17,9 +17,9 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/blog.html"));
   });
 
-  // cms route loads cms.html
-  app.get("/cms", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/cms.html"));
+  // home route loads home.html
+  app.get("/home", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/home.html"));
   });
 
   // blog route loads blog.html
@@ -31,5 +31,9 @@ module.exports = function(app) {
   app.get("/authors", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/author-manager.html"));
   });
+
+  app.get("/*", function (req, res){
+    res.sendFile(path.join(__dirname, "../public/blog.html"))
+  })
 
 };

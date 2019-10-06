@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/domyorke/Project2#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
+    "mysql2": "^1.7.0",
     "sequelize": "^5.19.2"
   },
   "devDependencies": {}

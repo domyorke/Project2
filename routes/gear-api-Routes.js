@@ -1,8 +1,9 @@
 var path = require("path");
+var db = require("express");
 
 module.exports = function (app) {
 
-    app.get('/api/', function (req, res) {
+    app.get('/api/gear', function (req, res) {
         res.json(path.join(__dirname, './home.html'))
     });
 
