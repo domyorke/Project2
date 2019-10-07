@@ -24,6 +24,7 @@ USE shoegazerDB;
 
 
 -- API routes
+-- API routes require the models and update the json pages that hold our data. 
+-- API routes do not need a home directory
+-- These are the routes that convert our backend data and make it useable for the frontend via json objects. 
 
--- What is the difference between my API routes and my HTML routes?
--- Why do I need to reak my api routes up?
