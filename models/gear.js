@@ -1,7 +1,7 @@
 require 
 
 module.exports = function (sequelize, DataTypes) {
-    var userProfile = sequelize.define("userProfile", {
+    var Gear = sequelize.define("Gear", {
         gear : {
             type: DataTypes.STRING,
             allowNull: false,
@@ -11,14 +11,14 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    userProfile.associate = function (models) {
+    Gear.associate = function (models) {
         // We're saying that a userProfile should belong to User
         // A userProfile can't be created without a User due to the foreign key constraint
-        userProfile.belongsTo(models.User, {
+        Gear.belongsTo(models.User, {
             foreignKey: {
-                allowNull: false
+                allowNull: true
             }
         });
     };
-    return userProfile;
+    return Gear;
 };

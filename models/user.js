@@ -31,7 +31,7 @@ module.exports = function (sequelize, DataTypes) {
     User.associate = function(models){
         //Associating User with their gear (via UserProfile created in the gear.js).
         //When the user is deleted, also delete any associated gear (via the userProfile)
-        User.hasMany(models.userProfile, {
+        User.hasMany(models.Gear, {
             onDelete: "cascade"
         });
     };

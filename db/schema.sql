@@ -28,3 +28,32 @@ USE shoegazerDB;
 -- API routes do not need a home directory
 -- These are the routes that convert our backend data and make it useable for the frontend via json objects. 
 
+-- HTML Routes are the literal navigation that occurs when a user navigates to a different route on the web page.
+
+-- Front End
+
+
+-- How do I test the API routes without frontend?
+
+--  User Authentication
+
+-- Front end
+
+-- Test routes, then user authentication, (will affect html routes)
+
+
+
+--With front end, start with javascript, then build out a basic skeleton css/html. 
+
+-- 1. Test routes
+---- User routes work (yay)
+---- Now, test gear api routes
+---- (It appears all the user routes are working)
+
+
+-- 2. Backend user authentication
+
+
+-- 3. Front end
+
+---- 
