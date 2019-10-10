@@ -20,13 +20,6 @@ module.exports = function (sequelize, DataTypes) {
                 len: [6, 20]
             }
         }
-        ,username: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [6, 20]
-            }
-        }
     });
     User.associate = function(models){
         //Associating User with their gear (via UserProfile created in the gear.js).

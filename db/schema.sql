@@ -46,14 +46,43 @@ USE shoegazerDB;
 --With front end, start with javascript, then build out a basic skeleton css/html. 
 
 -- 1. Test routes
----- User routes work (yay)
----- Now, test gear api routes
----- (It appears all the user routes are working)
+---- User routes work (yay) 
+---- Gear api routes work (yay)
 
 
 -- 2. Backend user authentication
+-- working
+
+-- Do I need a front end setup in order to test this?
+-- How will I have this connecting with
 
 
 -- 3. Front end
 
----- 
+
+-- If I'm not using handlebars, do I need separate HTML files for my home, sign in, login, and results pages?
+--Yes, and routes to serve those pages
+
+-- Is it within the scope of this project to have specific home pages that are specific to one User? 
+
+
+
+-- Or should I try to get an MVP working that allows any one User to post on a Tumblr style page. 
+-- Search bar?
+
+---- 4. Attach username to sign in information
+
+-- Login, store login information in front end.
+
+--If a user wants to add gear, they'd have to log in. 
+--User has ability to browse recently uploaded gear.
+
+--Search bar would be a nice to have.
+
+
+
+--Home page ajax request to pull gear from the gear database (script tag in html or a separate js file that is linked). Once gear is displayed on page, work on signup, signin page. Then work on a dashboard page that will be the user view when logged in. This will add the ability to upload new gear. 
+
+--Amazon S3 for adding pictures. This allows ability to upload anything. It will provide a link (similar to imager) and it is a link to the uploaded image. You use this link in your own database. Add to gear model (photoURL). 
+
+-- Once the user logs in, it gives them the ability to fill out a form and add new gear. That's it for MVP.
