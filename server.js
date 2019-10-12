@@ -36,11 +36,14 @@ require("./routes/htmlRoutes.js")(app);
 require("./routes/authenticationRoutes.js")(app);
 
 
+
 db.sequelize.sync({force: true}).then(function () {
     app.listen(PORT, function () {
         console.log('App listening on PORT: ', PORT)
     });
 });
+
+
 
 // Force True means drop tables
 // Within server.js file 
@@ -48,3 +51,4 @@ db.sequelize.sync({force: true}).then(function () {
 // check sequelize unit activities
 // Force false and true can be leveraged 
 // Force true good for testing
+//
