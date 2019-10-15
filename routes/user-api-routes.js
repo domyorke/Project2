@@ -31,11 +31,7 @@ module.exports = function (app) {
 
     //WORKS!!
     app.post("/api/users", function (req, res) {
-        db.User.create({
-            email: "a@b.com",
-            password: "aesfasfasfasf",
-            username: "asrtawr"
-        }).then(function (dbUser) {
+        db.User.create(req.body).then(function (dbUser) {
             res.json(dbUser);
         });
     });
