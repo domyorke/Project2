@@ -24,11 +24,17 @@ $(document).ready(function() {
   
     // loginUser does a post to our "api/login" route and if successful, redirects us the the home page
     function loginUser(email, password) {
-      $.post("/api/login")
+      $.post("/api/login", {
+        email: email,
+        password: password
+      })
         .then(function(data) {
           console.log(data);
           console.log("LOGGING IN SUCCESS")
           window.location.replace("/home");
+          //Doing a post request, but we are not sending any information to the api/login route. 
+
+
           // If there's an error, log the error
         })
         .catch(function(err) {

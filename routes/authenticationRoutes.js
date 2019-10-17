@@ -7,6 +7,7 @@ module.exports = function(app) {
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
+    console.log("Checking........")
     res.json(req.user);
   });
 
@@ -34,6 +35,7 @@ module.exports = function(app) {
 
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function(req, res) {
+    console.log("Does this work????");
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
