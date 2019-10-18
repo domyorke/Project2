@@ -31,7 +31,7 @@ $(document).ready(function() {
         .then(function(data) {
           console.log(data);
           console.log("LOGGING IN SUCCESS")
-          window.location.replace("/home");
+          window.location.replace("/");
           //Doing a post request, but we are not sending any information to the api/login route. 
 
 

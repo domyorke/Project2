@@ -20,7 +20,9 @@
   "homepage": "https://github.com/domyorke/Project2#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-mysql-session": "^2.1.0",
     "express-session": "^1.16.2",
     "mysql2": "^1.7.0",
     "passport": "^0.4.0",

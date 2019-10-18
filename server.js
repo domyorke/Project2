@@ -3,12 +3,35 @@ var session = require("express-session");
 var path = require('path');
 var app = express();
 var Passport = require("./config/passportStrategy");
+var MySQLStore = require('express-mysql-session')(session);
+require('dotenv').config();
 
 
 var PORT = process.env.PORT || 3000;
 
 // Requiring our models for syncing
 var db = require("./models");
+
+//var sessionStore = new MySQLStore(options);
+
+var sqlStore;
+if (process.env.NODE_ENV === "production") {
+    sqlStore = new mySQLStore({
+        user: process.env.JAWSDB_USER,
+        password: process.env.JAWSDB_PWD,
+        database: process.env.JAWSDB_DB,
+        host: process.env.JAWSDB_HOST,
+        port: process.env.JAWSDB_PORT
+    });
+} else {
+    sqlStore = new mySQLStore({
+        user: process.env.MYSQLUSER,
+        password: process.env.MYSQLPWD,
+        database: process.env.MYSQLDB,
+        host: process.env.MYSQLHOST,
+        port: process.env.MYSQLPORT  
+    });
+}
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -17,7 +40,8 @@ let sessionOptions = {
     //Check true on resave.
     resave: true,
     saveUnitialized: true,
-    secret: "Whatever"
+    secret: "Whatever",
+    store: sqlStore
 }
 
 app.use(session(sessionOptions));

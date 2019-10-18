@@ -33,8 +33,6 @@ USE shoegazerDB;
 
 
 
-
-
 -- Steps for today...
 
 -- 1. Upload to heroku. 
@@ -52,3 +50,5 @@ USE shoegazerDB;
 -- It appears I am correctly storing the signup and login info as I am able to login after creating an account. 
 
 --Heroku deployed but link not working
+
+-- 
