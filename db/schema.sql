@@ -32,9 +32,6 @@ USE shoegazerDB;
 -- Once the user logs in, it gives them the ability to fill out a form and add new gear. That's it for MVP.
 
 
-
--- Steps for today...
-
 -- 1. Upload to heroku. 
 ---- We bookmarked a step-by-step
 ---- Kylan slacked an article with regards to deploying with a sequelize database.
@@ -51,4 +48,12 @@ USE shoegazerDB;
 
 --Heroku deployed but link not working
 
--- 
+
+
+
+-- Heroku Deployment
+
+-- How can I ensure that the user and gear page is dynamic and showing only data from the logged in user?
+
+
+-- Make sure user signup bipasses having to log in. 

@@ -5,6 +5,7 @@
 // Dependencies
 // =============================================================
 var path = require("path");
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 // Routes
 // =============================================================
@@ -28,8 +29,9 @@ module.exports = function(app) {
   });
 
 
-  app.get("/userandgear", function(req, res) {
+  app.get("/userandgear", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../public/userandgear.html"));
+    //protect this path to be used only by a logged in user
   });
 
   // app.get("*", function (req, res){

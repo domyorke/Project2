@@ -1,9 +1,8 @@
 var express = require('express');
 var session = require("express-session");
-var path = require('path');
 var app = express();
 var Passport = require("./config/passportStrategy");
-var MySQLStore = require('express-mysql-session')(session);
+var mySQLStore = require('express-mysql-session')(session);
 require('dotenv').config();
 
 
