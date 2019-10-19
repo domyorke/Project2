@@ -31,7 +31,9 @@ module.exports = function(app) {
   app.get("/logout", function(req, res) {
     console.log("Did this log out?")
     req.logout();
-    res.redirect("/");
+    res.json(true);
+    //Logout, then say res.json
+
   });
 
   // Route for getting some data about our user to be used client side

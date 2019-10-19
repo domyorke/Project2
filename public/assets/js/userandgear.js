@@ -1,142 +1,110 @@
-$(document).ready(function() {
-    /* global moment */
-  
-    // blogContainer holds all of our posts
-    var blogContainer = $(".blog-container");
-    var postCategorySelect = $("#category");
-    // Click events for the edit and delete buttons
-    $(document).on("click", "button.delete", handlePostDelete);
-    $(document).on("click", "button.edit", handlePostEdit);
-    // Variable to hold our posts
-    var posts;
-  
-    // The code below handles the case where we want to get blog posts for a specific author
-    // Looks for a query param in the url for author_id
-    var url = window.location.search;
-    var authorId;
-    if (url.indexOf("?author_id=") !== -1) {
-      authorId = url.split("=")[1];
-      getPosts(authorId);
-    }
-    // If there's no authorId we just get all posts as usual
-    else {
-      getPosts();
-    }
-  
-  
-    // This function grabs posts from the database and updates the view
-    function getPosts(author) {
-      authorId = author || "";
-      if (authorId) {
-        authorId = "/?author_id=" + authorId;
+$(document).ready(function () {
+
+  //What do we want to do?
+
+  //On the home page, let's prepend the most recent gear posts by user. 
+
+  //WHen page loads, we want to check the local storage to see if that item exists. If it does, we'll provide css to that link. 
+
+
+  var loggedIn = false;
+
+  if (localStorage.getItem("loggedIn")) {
+    //Target logged in class and display CSS to hide it. 
+    $(".loginLink").css("display", "none");
+  }
+
+  $(".logoutLink").click(function () {
+    $.get("/logout").then(function (res) {
+      if (res) {
+        //local storage remove item
+        localStorage.removeItem("loggedIn");
+        window.location.reload();
       }
-      $.get("/api/posts" + authorId, function(data) {
-        console.log("Posts", data);
-        posts = data;
-        if (!posts || !posts.length) {
-          displayEmpty(author);
-        }
-        else {
-          initializeRows();
-        }
-      });
+    })
+  })
+
+
+
+  //Below is code for user adding gear to the database and to the page.
+  //app.post("/api/createGear" - route for creating new piece of gear
+
+  var gearForm = $("#gearForm");
+  var gearInput = $("#title");
+
+  // Adding an event listener for when the form is submitted
+  gearForm.on("submit", handleFormSubmit);
+
+  var url = window.location.search;
+  var postId;
+  var authorId;
+  // Sets a flag for whether or not we're updating a post to be false initially
+  var updating = false;
+
+
+  function handleFormSubmit(event) {
+    event.preventDefault();
+
+    //Won't submit the gear if we are missing an input. enterGearField is the form input class in userandgear.html
+    if (!gearInput.val().trim()) {
+      return ("Please enter text before clicking submit");
     }
-  
-    // This function does an API call to delete posts
-    function deletePost(id) {
-      $.ajax({
-        method: "DELETE",
-        url: "/api/posts/" + id
-      })
-        .then(function() {
-          getPosts(postCategorySelect.val());
-        });
-    }
-  
-    // InitializeRows handles appending all of our constructed post HTML inside blogContainer
-    function initializeRows() {
-      blogContainer.empty();
-      var postsToAdd = [];
-      for (var i = 0; i < posts.length; i++) {
-        postsToAdd.push(createNewRow(posts[i]));
+
+    //Take data from form and send to addGear API in a post request
+    var gearData = {
+      gear: document.getElementById("title").value,
+      email: localStorage.getItem("user_email")
+    };
+
+    submitGear(gearData).then(function () {location.reload()});
+  }
+
+  function submitGear(gear) {
+    return $.post("/api/createGear", gear, function () {
+      //Here, we would like to append to user's gear and prepend to the homepage
+      //When we prepend to user homepage, include the user's email address as a point of contact
+      console.log("Did we get this far?")
+    });
+
+    // function updateGear(gear) {
+    //   $.ajax({
+    //     method: "PUT",
+    //     url: "/api/posts",
+    //     data: gear
+    //   })
+    //     .then(function () {
+    //       //
+    //     });
+    // }
+
+  }
+
+
+  $.get('/api/gear', { email: localStorage.getItem('user_email') }).then(function (res) {
+    function getDeleter(i) {
+      var target_url = "/api/gear/" + String(i);
+      function deleter() {
+        $.ajax({
+          type: "DELETE",
+          url: target_url,
+          success: function (msg) {
+            console.log("delete successful?", msg);
+          }
+        }).then(function () {location.reload()})
       }
-      blogContainer.append(postsToAdd);
+      return deleter;
+    };
+
+    for (ind in res) {
+      var row = res[ind];
+      console.log(row);
+
+      var delId = 'del' + String(row.id);
+      var descCol = "<td>" + row.gear + "</td>";
+      var delCol = "<td><a href='#' id='" + delId + "'>Remove</a></td>";
+
+      $("#gearList").append("<tr>" + descCol + delCol + "</tr>");
+      $("#" + delId).click(getDeleter(row.id));
     }
-  
-    // This function constructs a post's HTML
-    function createNewRow(post) {
-      var formattedDate = new Date(post.createdAt);
-      formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
-      var newPostCard = $("<div>");
-      newPostCard.addClass("card");
-      var newPostCardHeading = $("<div>");
-      newPostCardHeading.addClass("card-header");
-      var deleteBtn = $("<button>");
-      deleteBtn.text("x");
-      deleteBtn.addClass("delete btn btn-danger");
-      var editBtn = $("<button>");
-      editBtn.text("EDIT");
-      editBtn.addClass("edit btn btn-info");
-      var newPostTitle = $("<h2>");
-      var newPostDate = $("<small>");
-      var newPostAuthor = $("<h5>");
-      newPostAuthor.text("Written by: " + post.Author.name);
-      newPostAuthor.css({
-        float: "right",
-        color: "blue",
-        "margin-top":
-        "-10px"
-      });
-      var newPostCardBody = $("<div>");
-      newPostCardBody.addClass("card-body");
-      var newPostBody = $("<p>");
-      newPostTitle.text(post.title + " ");
-      newPostBody.text(post.body);
-      newPostDate.text(formattedDate);
-      newPostTitle.append(newPostDate);
-      newPostCardHeading.append(deleteBtn);
-      newPostCardHeading.append(editBtn);
-      newPostCardHeading.append(newPostTitle);
-      newPostCardHeading.append(newPostAuthor);
-      newPostCardBody.append(newPostBody);
-      newPostCard.append(newPostCardHeading);
-      newPostCard.append(newPostCardBody);
-      newPostCard.data("post", post);
-      return newPostCard;
-    }
-  
-    // This function figures out which post we want to delete and then calls deletePost
-    function handlePostDelete() {
-      var currentPost = $(this)
-        .parent()
-        .parent()
-        .data("post");
-      deletePost(currentPost.id);
-    }
-  
-    // This function figures out which post we want to edit and takes it to the appropriate url
-    function handlePostEdit() {
-      var currentPost = $(this)
-        .parent()
-        .parent()
-        .data("post");
-      window.location.href = "/cms?post_id=" + currentPost.id;
-    }
-  
-    // This function displays a message when there are no posts
-    function displayEmpty(id) {
-      var query = window.location.search;
-      var partial = "";
-      if (id) {
-        partial = " for Author #" + id;
-      }
-      blogContainer.empty();
-      var messageH2 = $("<h2>");
-      messageH2.css({ "text-align": "center", "margin-top": "50px" });
-      messageH2.html("No posts yet" + partial + ", navigate <a href='/cms" + query +
-      "'>here</a> in order to get started.");
-      blogContainer.append(messageH2);
-    }
-  
-  });
-  
+  })
+});

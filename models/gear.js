@@ -1,5 +1,3 @@
-require 
-
 module.exports = function (sequelize, DataTypes) {
     var Gear = sequelize.define("Gear", {
         gear : {

@@ -21,9 +21,12 @@ $(document).ready(function() {
       emailInput.val("");
       passwordInput.val("");
     });
+
+    var user_email;
   
     // loginUser does a post to our "api/login" route and if successful, redirects us the the home page
     function loginUser(email, password) {
+      user_email = email;
       $.post("/api/login", {
         email: email,
         password: password
@@ -31,6 +34,8 @@ $(document).ready(function() {
         .then(function(data) {
           console.log(data);
           console.log("LOGGING IN SUCCESS")
+          localStorage.setItem("loggedIn", "true");
+          localStorage.setItem("user_email", user_email);
           window.location.replace("/");
           //Doing a post request, but we are not sending any information to the api/login route. 
 

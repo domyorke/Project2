@@ -1,0 +1,23 @@
+.profileLink {
+    display: none;
+}
+
+.logoutLink {
+    /* style.css is linked to home properly.  */
+    color: #007bff;
+    display: none;
+    cursor: pointer; 
+    float: right;
+}
+
+.loginLink {
+  
+}
+
+.signUpLink {
+   
+}
+
+.enterGearField {
+    width = 30%;
+}

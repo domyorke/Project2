@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Title</title>
+  <title>Shoegazer - My Profile</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,9 +16,9 @@
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
@@ -27,27 +27,48 @@
     crossorigin="anonymous"></script>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Shoegazer</a>
+    <a class="navbar-brand" href="/">Shoegazer</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- How do I make this attach to my HTML routes and float right? -->
-    <a class="nav-link float-right" href="/login">Login</a>
-    <!-- How do I make this attach to my HTML routes and float right? -->
-    <a class="nav-link float-right" href="/signup">Sign Up</a>
-    <a class="nav-link float-right" href="/logout">
-      Logout</a>
-    <a class="nav-link float-right" href="/userandgear.html">My Profile</a>
+    <a class="nav-link float-right logoutLink" href="#">Logout</a>
 
 
   </nav>
 
-<h1>Your Profile</h1>
+<div class="container mt-5">
+    <h1>Your Profile</h1>
+
+	<form id="gearForm">
+    <div class="form-group">
+      <label for="title">Gear</label>
+      <input placeholder="What do you rock?" type="text" class="form-control enterGearField" id="title">
+      <button type="submit" class="btn btn-success submit addButton mt-2">Add</button>
+    </div>
+  </form>
+
+  <br>
+
+  <h1>Here's what you rock</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Description</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+
+    <tbody id="gearList"></tbody>
+  </table></div>
+
+
+
+
 
   <!-- Custom Script -->
-  <script src="/assets/js/home.js" type="text/javascript"></script>
+  <script src="/assets/js/userandgear.js" type="text/javascript"></script>
 
 
 </body>

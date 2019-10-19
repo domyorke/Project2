@@ -35,15 +35,4 @@ module.exports = function (app) {
             res.json(dbUser);
         });
     });
-
-    //WORKS!!
-    app.delete("/api/authors/:id", function (req, res) {
-        db.Author.destroy({
-            where: {
-                id: req.params.id
-            }
-        }).then(function (dbUser) {
-            res.json(dbAuthor);
-        });
-    });
 };

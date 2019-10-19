@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Title</title>
+  <title>Shoegazer - Home</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,14 +10,19 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+
 </head>
+
+
+
 
 <body>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -27,19 +32,19 @@
     crossorigin="anonymous"></script>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Shoegazer</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="/">Shoegazer</a>
+    <button class="navbar-toggler shoegazerButton" type="button" data-toggle="collapse"
+      data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <!-- How do I make this attach to my HTML routes and float right? -->
-    <a class="nav-link float-right" href="/login">Login</a>
+    <a class="nav-link float-right loginLink" href="/login">Login</a>
     <!-- How do I make this attach to my HTML routes and float right? -->
-    <a class="nav-link float-right" href="/signup">Sign Up</a>
-    <a class="nav-link float-right" href="/logout">
-      Logout</a>
-    <a class="nav-link float-right" href="/userandgear">My Profile</a>
+    <a class="nav-link float-right signUpLink" href="/signup">Sign Up</a>
+    <a class="nav-link float-right logoutLink" href="#">Logout</a>
+    <a class="nav-link float-right profileLink" href="/userandgear">My Profile</a>
 
 
   </nav>
@@ -47,6 +52,18 @@
   <!-- Custom Script -->
   <script src="/assets/js/home.js" type="text/javascript"></script>
 
+  <div class="container mt-5">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Description</th>
+          <th scope="col">Contact</th>
+        </tr>
+      </thead>
+
+      <tbody id="gearList"></tbody>
+    </table>
+  </div>
 
 </body>
 

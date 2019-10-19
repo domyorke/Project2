@@ -47,13 +47,30 @@ USE shoegazerDB;
 -- It appears I am correctly storing the signup and login info as I am able to login after creating an account. 
 
 --Heroku deployed but link not working
-
-
-
-
 -- Heroku Deployment
+
+
+
+
+
+
 
 -- How can I ensure that the user and gear page is dynamic and showing only data from the logged in user?
 
+-- Make sure user signup bipasses having to log in.
 
--- Make sure user signup bipasses having to log in. 
+-- Hide elements from the HTML such as the "My Profile" button showing when the user is not yet logged in
+
+-- Allow user to add pictures using Amazon C3 or some other technology.
+
+
+
+
+
+--In javascript, have variable is logged in set to false. when they log in, on the callback of logged in, update varible to true, and update the DOM. Keep the elements hidded until logged in. 
+
+
+--When homepage loads, ajax request to get all gear data, and append to home page. 
+
+-- When my profile page loads, ajax to backend to retrieve that user's gear. Send this back to the json (like homepage), and once we get that in the .then on the ajax of he front end, append to profile page. 
+
